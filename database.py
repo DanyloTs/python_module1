@@ -7,7 +7,7 @@ class Database:
 
     async def connect(self):
         self.pool = await aiosqlite.connect(self.db_name)
-        await self.create_moves_table()  # Create moves table on connection
+        await self.create_moves_table()  
 
     async def create_moves_table(self):
         create_table_query = """
@@ -20,7 +20,7 @@ class Database:
             );
         """
         async with self.pool.execute(create_table_query) as cursor:
-            await cursor.fetchall()  # Execute the create table query
+            await cursor.fetchall()  
 
     async def insert_move(self, player, position_from, position_to):
         insert_query = """
@@ -28,7 +28,7 @@ class Database:
             VALUES (?, ?, ?);
         """
         async with self.pool.execute(insert_query, (player, str(position_from), str(position_to))) as cursor:
-            await self.pool.commit()  # Commit the transaction
+            await self.pool.commit()  
 
     async def close(self):
         if self.pool:
