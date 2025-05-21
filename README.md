@@ -38,7 +38,5 @@ Game state after a complete or partial session with several moves.
 
 ![End Game](game_end.png)
 
----
 
-## 📂 Project Structure
 
